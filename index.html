@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1024, user-scalable=no">
+
+<title>Sheaves in Lean - Lean Together 2019</title>
+
+<link rel="stylesheet" media="screen" href="css/reset.css">
+<link rel="stylesheet" media="screen" href="css/fira_code.css">
+<link rel="stylesheet" media="screen" href="css/pygments.css">
+<link rel="stylesheet" media="screen" href="css/generic.css">
+<link rel="stylesheet" media="screen" href="css/special.css">
+
+<link rel="stylesheet" media="screen" href="css/stack.v0.css">
+
+<section id="titleslide">
+	<h1>Sheaves in Lean</h1>
+<footer><span id="wip">[work in progress]</span>
+	<span id="author"><em>by</em> &emsp; Johan Commelin</span></footer>
+</section>
+
+<section>
+<img src="sheaf.jpg" class="slide" id="sheaf-pic" />
+<footer><span class="credit smaller">
+	(Image source:
+	<a href="https://clipground.com/images/barley-clipart-20.jpg">
+	https://clipground.com/images/barley-clipart-20.jpg</a>)
+</span></footer>
+</section>
+
+<section>
+<h2>What is a sheaf?</h2>
+<p>Canonical example:
+If
+<code class="highlight">
+	<span class="n">X</span>
+</code>
+is a topological space,
+then continuous functions
+<code class="highlight">
+	<span class="n">X</span>
+	<span class="bp">→</span>
+	<span class="n">real</span>
+</code> <!-- TODO fix real -->
+form a sheaf.
+
+<p>Crucial property: functions glue uniquely
+</section>
+
+<section id="categories">
+<h2>Categories in Lean</h2>
+<div class="smaller">
+<div class="highlight"><pre><span></span><span class="n">class</span> <span class="n">category</span> <span class="o">(</span><span class="n">obj</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u</span><span class="o">)</span> <span class="o">:</span> <span class="kt">Type</span> <span class="o">(</span><span class="n">max</span> <span class="n">u</span> <span class="o">(</span><span class="n">v</span><span class="bp">+</span><span class="mi">1</span><span class="o">))</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">hom</span>      <span class="o">:</span> <span class="n">obj</span> <span class="bp">→</span> <span class="n">obj</span> <span class="bp">→</span> <span class="kt">Type</span> <span class="n">v</span><span class="o">)</span>
+<span class="o">(</span><span class="n">id</span>       <span class="o">:</span> <span class="bp">Π</span> <span class="n">X</span> <span class="o">:</span> <span class="n">obj</span><span class="o">,</span> <span class="n">hom</span> <span class="n">X</span> <span class="n">X</span><span class="o">)</span>
+<span class="o">(</span><span class="n">comp</span>     <span class="o">:</span> <span class="bp">Π</span> <span class="o">{</span><span class="n">X</span> <span class="n">Y</span> <span class="n">Z</span> <span class="o">:</span> <span class="n">obj</span><span class="o">},</span> <span class="n">hom</span> <span class="n">X</span> <span class="n">Y</span> <span class="bp">→</span> <span class="n">hom</span> <span class="n">Y</span> <span class="n">Z</span> <span class="bp">→</span> <span class="n">hom</span> <span class="n">X</span> <span class="n">Z</span><span class="o">)</span>
+<span class="o">(</span><span class="n">id_comp&#39;</span> <span class="o">:</span> <span class="bp">∀</span> <span class="o">{</span><span class="n">X</span> <span class="n">Y</span> <span class="o">:</span> <span class="n">obj</span><span class="o">}</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">hom</span> <span class="n">X</span> <span class="n">Y</span><span class="o">),</span> <span class="n">comp</span> <span class="o">(</span><span class="n">id</span> <span class="n">X</span><span class="o">)</span> <span class="n">f</span> <span class="bp">=</span> <span class="n">f</span> <span class="bp">.</span> <span class="n">obviously</span><span class="o">)</span>
+<span class="o">(</span><span class="n">comp_id&#39;</span> <span class="o">:</span> <span class="bp">∀</span> <span class="o">{</span><span class="n">X</span> <span class="n">Y</span> <span class="o">:</span> <span class="n">obj</span><span class="o">}</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">hom</span> <span class="n">X</span> <span class="n">Y</span><span class="o">),</span> <span class="n">comp</span> <span class="n">f</span> <span class="o">(</span><span class="n">id</span> <span class="n">Y</span><span class="o">)</span> <span class="bp">=</span> <span class="n">f</span> <span class="bp">.</span> <span class="n">obviously</span><span class="o">)</span>
+<span class="o">(</span><span class="n">assoc&#39;</span>   <span class="o">:</span> <span class="bp">∀</span> <span class="o">{</span><span class="n">W</span> <span class="n">X</span> <span class="n">Y</span> <span class="n">Z</span> <span class="o">:</span> <span class="n">obj</span><span class="o">}</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">hom</span> <span class="n">W</span> <span class="n">X</span><span class="o">)</span> <span class="o">(</span><span class="n">g</span> <span class="o">:</span> <span class="n">hom</span> <span class="n">X</span> <span class="n">Y</span><span class="o">)</span> <span class="o">(</span><span class="n">h</span> <span class="o">:</span> <span class="n">hom</span> <span class="n">Y</span> <span class="n">Z</span><span class="o">),</span>
+            <span class="n">comp</span> <span class="o">(</span><span class="n">comp</span> <span class="n">f</span> <span class="n">g</span><span class="o">)</span> <span class="n">h</span> <span class="bp">=</span> <span class="n">comp</span> <span class="n">f</span> <span class="o">(</span><span class="n">comp</span> <span class="n">g</span> <span class="n">h</span><span class="o">)</span> <span class="bp">.</span> <span class="n">obviously</span><span class="o">)</span>
+
+<span class="kn">notation</span> <span class="bp">`</span><span class="mi">𝟙</span><span class="bp">`</span> <span class="o">:=</span> <span class="n">category</span><span class="bp">.</span><span class="n">id</span> <span class="c1">-- type as \b1</span>
+<span class="kn">infixr</span> <span class="bp">`</span> <span class="err">≫</span> <span class="bp">`</span><span class="o">:</span><span class="mi">80</span> <span class="o">:=</span> <span class="n">category</span><span class="bp">.</span><span class="n">comp</span> <span class="c1">-- type as \gg</span>
+<span class="kn">infixr</span> <span class="bp">`</span> <span class="err">⟶</span> <span class="bp">`</span><span class="o">:</span><span class="mi">10</span> <span class="o">:=</span> <span class="n">category</span><span class="bp">.</span><span class="n">hom</span> <span class="c1">-- type as \h</span>
+</pre></div>
+</div>
+<!-- <div class="anim-attribute slide" data-what=".appear" data-attr="color:#f00"></div> -->
+<!-- <div class="slide"></div> -->
+<span class="credit">(by Scott Morrison)</span>
+</section>
+
+<!-- <script> -->
+<!-- 	$('#categories') -->
+<!-- 	.find('span.n:contains("obviously")') -->
+<!-- 	.each(function(idx, elem) { -->
+<!-- 		$(elem).addClass("appear"); -->
+<!-- 	}); -->
+<!-- </script> -->
+
+<section>
+Foo bar
+</section>
+
+<script src="js/d3.v3.min.js"></script>
+<script src="js/quack.v1.js"></script>
+
+<script> var myquack = quack(); </script>

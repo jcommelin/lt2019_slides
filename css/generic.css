@@ -1,0 +1,120 @@
+body{
+	font:400 14px/1.5 "Fira Code",monospace;
+	color:#111;
+	background-color:#fdfdfd;
+	-webkit-text-size-adjust:100%;
+	-webkit-font-feature-settings:"kern" 1;
+	-moz-font-feature-settings:"kern" 1;
+	-o-font-feature-settings:"kern" 1;
+	font-feature-settings:"kern" 1;
+	font-kerning:normal;
+	overflow: hidden;
+}
+section {
+	padding: 0em 1em;
+	background: #fff;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-weight: bold;
+}
+h1 {
+	font-size: 4.5em;
+	text-align: center;
+	padding-top: 1em;
+	max-height: 100%;
+}
+h2 {
+	font-size: 2.25em;
+	padding-top: .5em;
+	margin: 0 0 .66666em 0;
+	border-bottom: 3px solid #888;
+	border-bottom-color: #ccc;
+}
+h3 {
+	font-size: 1.4375em;
+	margin-bottom: .30435em;
+}
+h4 {
+	font-size: 1.25em;
+	margin-bottom: .25em;
+}
+h5 {
+	font-size: 1.125em;
+	margin-bottom: .2222em;
+}
+h6 {
+	font-size: 1em;
+}
+ul li {
+	list-style: none;
+}
+li {
+	padding: .25em 0;
+	vertical-align: middle;
+}
+li > ol, li > ul {
+	margin-bottom: inherit;
+}
+blockquote cite {
+	font-size: .5em;
+	font-style: normal;
+	font-weight: bold;
+	color: #888;
+}
+::-moz-selection {
+	background: #c00;
+	color: #fff;
+}
+::selection {
+	background: #c00;
+	color: #fff;
+}
+a, a:hover, a:focus, a:active, a:visited {
+	color: #c00;
+	text-decoration: none;
+}
+a:hover, a:focus {
+	text-decoration: underline;
+}
+img, iframe, video {
+	display: block;
+	max-width: 100%;
+}
+video, iframe, img {
+	display: block;
+	margin: 0 auto;
+}
+p, blockquote, iframe, img, ul, ol, pre, video {
+	margin-bottom: 1em;
+}
+em {
+	font-style: italic;
+}
+pre {
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	padding: 1em;
+	border: 1px solid #ccc;
+}
+blockquote {
+	font-size: 2em;
+	font-style: italic;
+	padding: 1em 2em;
+	color: #000;
+	border-left: 5px solid #ccc;
+}
+footer {
+	position: absolute;
+	bottom: 0.1em;
+	left: 0;
+	right: 0;
+	padding: inherit;
+}
+.warning {
+	color: #c00;
+}
+.smaller {
+	font-size: 60%;
+	line-height: 1.2em;
+}

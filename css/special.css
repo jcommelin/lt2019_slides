@@ -1,0 +1,21 @@
+#titleslide h1 {
+	word-spacing: 9999px;
+	line-height: 1.2em;
+}
+#wip {
+	float: left;
+}
+#author {
+	float: right;
+}
+#sheaf-pic {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	height: 50%;
+	width: 50%;
+}
+.credit {
+	float: right;
+	font-size: 60%;
+}

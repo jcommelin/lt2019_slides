@@ -1,0 +1,94 @@
+define(`codeblock',`include(tmp/$1.html)dnl')
+changequote(<{!,!}>)dnl
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1024, user-scalable=no">
+
+<title>Sheaves in Lean - Lean Together 2019</title>
+
+<link rel="stylesheet" media="screen" href="css/reset.css">
+<link rel="stylesheet" media="screen" href="css/fira_code.css">
+<link rel="stylesheet" media="screen" href="css/pygments.css">
+<link rel="stylesheet" media="screen" href="css/generic.css">
+<link rel="stylesheet" media="screen" href="css/special.css">
+
+<link rel="stylesheet" media="screen" href="css/stack.v0.css">
+
+<section id="titleslide">
+	<h1>Sheaves in Lean</h1>
+<footer><span id="wip">[work in progress]</span>
+	<span id="author"><em>by</em> &emsp; Johan Commelin</span></footer>
+</section>
+
+<section>
+<img src="sheaf.jpg" class="slide" id="sheaf-pic" />
+<footer><span class="credit smaller">
+	(Image source:
+	<a href="https://clipground.com/images/barley-clipart-20.jpg">
+	https://clipground.com/images/barley-clipart-20.jpg</a>)
+</span></footer>
+</section>
+
+<section>
+<h2>What is a sheaf?</h2>
+<p>Canonical example:
+If
+<code class="highlight">
+	<span class="n">X</span>
+</code>
+is a topological space,
+then continuous functions
+<code class="highlight">
+	<span class="n">X</span>
+	<span class="bp">→</span>
+	<span class="n">real</span>
+</code> <!-- TODO fix real -->
+form a sheaf.
+
+<p>Crucial property: functions glue uniquely
+</section>
+
+<section>
+<h2>A first definition</h2>
+<p>Let 
+<code class="highlight">
+	<span class="n">X</span>
+</code>
+be a topological space.
+
+<p>A presheaf
+<code class="highlight">
+	<span class="n">F</span>
+</code>
+is a rule that assigns
+<ul>
+	<li>to every open
+</ul>
+</section>
+
+<section id="categories">
+<h2>Categories in Lean</h2>
+<div class="smaller">
+codeblock(category)
+</div>
+<!-- <div class="anim-attribute slide" data-what=".appear" data-attr="color:#f00"></div> -->
+<!-- <div class="slide"></div> -->
+<span class="credit">(by Scott Morrison)</span>
+</section>
+
+<!-- <script> -->
+<!-- 	$('#categories') -->
+<!-- 	.find('span.n:contains("obviously")') -->
+<!-- 	.each(function(idx, elem) { -->
+<!-- 		$(elem).addClass("appear"); -->
+<!-- 	}); -->
+<!-- </script> -->
+
+<section>
+Foo bar
+</section>
+
+<script src="js/d3.v3.min.js"></script>
+<script src="js/quack.v1.js"></script>
+
+<script> var myquack = quack(); </script>
