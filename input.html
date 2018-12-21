@@ -32,17 +32,13 @@ changequote(<{!,!}>)dnl
 <section>
 <h2>What is a sheaf?</h2>
 <p>Canonical example:
-If
-<code class="highlight">
-	<span class="n">X</span>
-</code>
-is a topological space,
+If <code>X</code> is a topological space,
 then continuous functions
 <code class="highlight">
 	<span class="n">X</span>
 	<span class="bp">→</span>
-	<span class="n">real</span>
-</code> <!-- TODO fix real -->
+	<span class="n">ℝ</span>
+</code>
 form a sheaf.
 
 <p>Crucial property: functions glue uniquely
@@ -50,43 +46,83 @@ form a sheaf.
 
 <section>
 <h2>A first definition</h2>
-<p>Let 
-<code class="highlight">
-	<span class="n">X</span>
-</code>
+<p>Let
+<code>X</code>
 be a topological space.
 
-<p>A presheaf
-<code class="highlight">
-	<span class="n">F</span>
-</code>
+<p>A <em>presheaf</em> <code>F</code>
 is a rule that assigns
 <ul>
-	<li>to every open
+<li>to every open <code>U ⊆ X</code> a set <code class="highlight"><span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span></code></li>
+<li>to every inclusion of opens <code>U ⊆ V</code><br/>
+	a map
+	<code class="highlight">
+		<span class="n">r_UV</span> <span class="o">:</span> <span class="n">F</span><span class="o">(</span><span class="n">V</span><span class="o">)</span> <span class="bp">→</span> <span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span>
+	</code></li>
+</ul>
+<p>such that
+<ul>
+<li>for all <code>U</code>, the map <code>r_UU</code> is <code>id</code> on <code class="highlight"><span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span></code></li>
+<li>if <code>U ⊆ V ⊆ W</code>, then
+<code class="highlight"><span class="n">r_UV</span> <span class="err">∘</span> <span class="n">r_VW</span> <span class="bp">=</span> <span class="n">r_UW</span></code>.</li>
 </ul>
 </section>
 
-<section id="categories">
-<h2>Categories in Lean</h2>
-<div class="smaller">
-codeblock(category)
-</div>
-<!-- <div class="anim-attribute slide" data-what=".appear" data-attr="color:#f00"></div> -->
-<!-- <div class="slide"></div> -->
-<span class="credit">(by Scott Morrison)</span>
+<section>
+<h2>Say again?</h2>
+<p>Note that <code class="highlight"><span class="n">opens</span><span class="o">(</span><span class="n">X</span><span class="o">)</span></code>
+is a lattice,<br/>
+hence a category.
+
+<p>A presheaf on <code>X</code> is exactly a functor
+codeblock(psh_as_func)
 </section>
 
-<!-- <script> -->
-<!-- 	$('#categories') -->
-<!-- 	.find('span.n:contains("obviously")') -->
-<!-- 	.each(function(idx, elem) { -->
-<!-- 		$(elem).addClass("appear"); -->
-<!-- 	}); -->
-<!-- </script> -->
+<section id="categories">
+		<h2>Categories in Lean</h2>
+		<div class="tiny">
+		codeblock(category)
+		</div>
+		<!-- <div class="anim-attribute slide" data-what=".appear" data-attr="color:#f00"></div> -->
+		<!-- <div class="slide"></div> -->
+		<span class="credit">(by Scott Morrison)</span>
+		</section>
+
+		<!-- <script> -->
+		<!-- 	$('#categories') -->
+		<!-- 	.find('span.n:contains("obviously")') -->
+		<!-- 	.each(function(idx, elem) { -->
+		<!-- 		$(elem).addClass("appear"); -->
+		<!-- 	}); -->
+		<!-- </script> -->
 
 <section>
-Foo bar
+<h2>So, what is a sheaf?</h2>
+<p>Let <code>U_i ⊆ X</code> be open sets that cover <code>U ⊆ X</code>.</p>
+<p>Consider the following set</p>
+<div class="small">
+codeblock(sheaf_condition)
+</div>
+<p>There is a canonical map
+<code class="highlight">
+	<span class="n"><span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span> <span class="bp">→</span> <span class="n">F'</span><span class="o">(</span><span class="n">U</span><span class="o">)</span>
+</code>
+</p>
+<p>A presheaf <code>F</code> is called a <em>sheaf</em>
+	if this canonical map is bijective for every <code>U ⊆ X</code>.
 </section>
+
+<section>
+<h2>Remarks</h2>
+<p>Sometimes we want sheaves,<br/>
+	but don't have a good topology.</p>
+
+<p>Solution:
+	Put topologies on categories.</p>
+
+<p>Famous example: &eacute;tale topology</p>
+</section>
+
 
 <script src="js/d3.v3.min.js"></script>
 <script src="js/quack.v1.js"></script>

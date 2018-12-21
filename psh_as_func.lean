@@ -1,0 +1,1 @@
+opens(X)ᵒᵖ ⥤ Set

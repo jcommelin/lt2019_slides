@@ -114,7 +114,11 @@ footer {
 .warning {
 	color: #c00;
 }
-.smaller {
+.small {
+	font-size: 80%;
+	line-height: 1.2em;
+}
+.tiny {
 	font-size: 60%;
 	line-height: 1.2em;
 }

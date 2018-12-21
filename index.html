@@ -31,26 +31,57 @@
 <section>
 <h2>What is a sheaf?</h2>
 <p>Canonical example:
-If
-<code class="highlight">
-	<span class="n">X</span>
-</code>
-is a topological space,
+If <code>X</code> is a topological space,
 then continuous functions
 <code class="highlight">
 	<span class="n">X</span>
 	<span class="bp">→</span>
-	<span class="n">real</span>
-</code> <!-- TODO fix real -->
+	<span class="n">ℝ</span>
+</code>
 form a sheaf.
 
 <p>Crucial property: functions glue uniquely
 </section>
 
+<section>
+<h2>A first definition</h2>
+<p>Let
+<code>X</code>
+be a topological space.
+
+<p>A <em>presheaf</em> <code>F</code>
+is a rule that assigns
+<ul>
+<li>to every open <code>U ⊆ X</code> a set <code class="highlight"><span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span></code></li>
+<li>to every inclusion of opens <code>U ⊆ V</code><br/>
+	a map
+	<code class="highlight">
+		<span class="n">r_UV</span> <span class="o">:</span> <span class="n">F</span><span class="o">(</span><span class="n">V</span><span class="o">)</span> <span class="bp">→</span> <span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span>
+	</code></li>
+</ul>
+<p>such that
+<ul>
+<li>for all <code>U</code>, the map <code>r_UU</code> is <code>id</code> on <code class="highlight"><span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span></code></li>
+<li>if <code>U ⊆ V ⊆ W</code>, then
+<code class="highlight"><span class="n">r_UV</span> <span class="err">∘</span> <span class="n">r_VW</span> <span class="bp">=</span> <span class="n">r_UW</span></code>.</li>
+</ul>
+</section>
+
+<section>
+<h2>Say again?</h2>
+<p>Note that <code class="highlight"><span class="n">opens</span><span class="o">(</span><span class="n">X</span><span class="o">)</span></code>
+is a lattice,<br/>
+hence a category.
+
+<p>A presheaf on <code>X</code> is exactly a functor
+<div class="highlight"><pre><span></span><span class="n">opens</span><span class="o">(</span><span class="n">X</span><span class="o">)</span><span class="err">ᵒᵖ</span> <span class="err">⥤</span> <span class="n">Set</span>
+</pre></div>
+</section>
+
 <section id="categories">
-<h2>Categories in Lean</h2>
-<div class="smaller">
-<div class="highlight"><pre><span></span><span class="n">class</span> <span class="n">category</span> <span class="o">(</span><span class="n">obj</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u</span><span class="o">)</span> <span class="o">:</span> <span class="kt">Type</span> <span class="o">(</span><span class="n">max</span> <span class="n">u</span> <span class="o">(</span><span class="n">v</span><span class="bp">+</span><span class="mi">1</span><span class="o">))</span> <span class="o">:=</span>
+		<h2>Categories in Lean</h2>
+		<div class="tiny">
+		<div class="highlight"><pre><span></span><span class="n">class</span> <span class="n">category</span> <span class="o">(</span><span class="n">obj</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u</span><span class="o">)</span> <span class="o">:</span> <span class="kt">Type</span> <span class="o">(</span><span class="n">max</span> <span class="n">u</span> <span class="o">(</span><span class="n">v</span><span class="bp">+</span><span class="mi">1</span><span class="o">))</span> <span class="o">:=</span>
 <span class="o">(</span><span class="n">hom</span>      <span class="o">:</span> <span class="n">obj</span> <span class="bp">→</span> <span class="n">obj</span> <span class="bp">→</span> <span class="kt">Type</span> <span class="n">v</span><span class="o">)</span>
 <span class="o">(</span><span class="n">id</span>       <span class="o">:</span> <span class="bp">Π</span> <span class="n">X</span> <span class="o">:</span> <span class="n">obj</span><span class="o">,</span> <span class="n">hom</span> <span class="n">X</span> <span class="n">X</span><span class="o">)</span>
 <span class="o">(</span><span class="n">comp</span>     <span class="o">:</span> <span class="bp">Π</span> <span class="o">{</span><span class="n">X</span> <span class="n">Y</span> <span class="n">Z</span> <span class="o">:</span> <span class="n">obj</span><span class="o">},</span> <span class="n">hom</span> <span class="n">X</span> <span class="n">Y</span> <span class="bp">→</span> <span class="n">hom</span> <span class="n">Y</span> <span class="n">Z</span> <span class="bp">→</span> <span class="n">hom</span> <span class="n">X</span> <span class="n">Z</span><span class="o">)</span>
@@ -63,23 +94,48 @@ form a sheaf.
 <span class="kn">infixr</span> <span class="bp">`</span> <span class="err">≫</span> <span class="bp">`</span><span class="o">:</span><span class="mi">80</span> <span class="o">:=</span> <span class="n">category</span><span class="bp">.</span><span class="n">comp</span> <span class="c1">-- type as \gg</span>
 <span class="kn">infixr</span> <span class="bp">`</span> <span class="err">⟶</span> <span class="bp">`</span><span class="o">:</span><span class="mi">10</span> <span class="o">:=</span> <span class="n">category</span><span class="bp">.</span><span class="n">hom</span> <span class="c1">-- type as \h</span>
 </pre></div>
-</div>
-<!-- <div class="anim-attribute slide" data-what=".appear" data-attr="color:#f00"></div> -->
-<!-- <div class="slide"></div> -->
-<span class="credit">(by Scott Morrison)</span>
-</section>
+		</div>
+		<!-- <div class="anim-attribute slide" data-what=".appear" data-attr="color:#f00"></div> -->
+		<!-- <div class="slide"></div> -->
+		<span class="credit">(by Scott Morrison)</span>
+		</section>
 
-<!-- <script> -->
-<!-- 	$('#categories') -->
-<!-- 	.find('span.n:contains("obviously")') -->
-<!-- 	.each(function(idx, elem) { -->
-<!-- 		$(elem).addClass("appear"); -->
-<!-- 	}); -->
-<!-- </script> -->
+		<!-- <script> -->
+		<!-- 	$('#categories') -->
+		<!-- 	.find('span.n:contains("obviously")') -->
+		<!-- 	.each(function(idx, elem) { -->
+		<!-- 		$(elem).addClass("appear"); -->
+		<!-- 	}); -->
+		<!-- </script> -->
 
 <section>
-Foo bar
+<h2>So, what is a sheaf?</h2>
+<p>Let <code>U_i ⊆ X</code> be open sets that cover <code>U ⊆ X</code>.</p>
+<p>Consider the following set</p>
+<div class="small">
+<div class="highlight"><pre><span></span><span class="n">F&#39;</span><span class="o">(</span><span class="n">U</span><span class="o">)</span> <span class="bp">=</span> <span class="o">{</span> <span class="n">s</span> <span class="err">∈</span> <span class="bp">Π_</span><span class="n">i</span> <span class="n">F</span><span class="o">(</span><span class="n">U_i</span><span class="o">)</span> <span class="bp">|</span> <span class="n">r</span><span class="o">(</span><span class="n">s_i</span><span class="o">)</span> <span class="bp">=</span> <span class="n">r</span><span class="o">(</span><span class="n">s_j</span><span class="o">),</span> <span class="bp">∀</span> <span class="n">i</span><span class="o">,</span><span class="n">j</span> <span class="o">}</span>
+</pre></div>
+</div>
+<p>There is a canonical map
+<code class="highlight">
+	<span class="n"><span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span> <span class="bp">→</span> <span class="n">F'</span><span class="o">(</span><span class="n">U</span><span class="o">)</span>
+</code>
+</p>
+<p>A presheaf <code>F</code> is called a <em>sheaf</em>
+	if this canonical map is bijective for every <code>U ⊆ X</code>.
 </section>
+
+<section>
+<h2>Remarks</h2>
+<p>Sometimes we want sheaves,<br/>
+	but don't have a good topology.</p>
+
+<p>Solution:
+	Put topologies on categories.</p>
+
+<p>Famous example: &eacute;tale topology</p>
+</section>
+
 
 <script src="js/d3.v3.min.js"></script>
 <script src="js/quack.v1.js"></script>
