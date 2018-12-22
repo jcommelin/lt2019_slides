@@ -1,3 +1,7 @@
+section {
+	padding: 0em 1em;
+	background: #fff;
+}
 #titleslide h1 {
 	word-spacing: 9999px;
 	line-height: 1.2em;
@@ -8,14 +12,35 @@
 #author {
 	float: right;
 }
-#sheaf-pic {
-	position: relative;
+center {
+	display: block;
+	line-height: 1em;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+.vcenter {
+	display: block;
+	position: fixed;
 	top: 50%;
 	transform: translateY(-50%);
-	height: 50%;
-	width: 50%;
+	left: 0;
+	right: 0;
+	padding: inherit;
+}
+#sheaf-pic {
+	height: 90%;
+	width: 90%;
 }
 .credit {
 	float: right;
 	font-size: 60%;
 }
+.marginal {
+	position: absolute;
+	right: 0;
+	margin-top: .4em;
+	padding-right: 1em;
+}
+

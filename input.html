@@ -21,8 +21,10 @@ changequote(<{!,!}>)dnl
 </section>
 
 <section>
-<img src="sheaf.jpg" class="slide" id="sheaf-pic" />
-<footer><span class="credit smaller">
+<center>
+	<img src="sheaf.jpg" id="sheaf-pic" />
+</center>
+<footer><span class="credit tiny">
 	(Image source:
 	<a href="https://clipground.com/images/barley-clipart-20.jpg">
 	https://clipground.com/images/barley-clipart-20.jpg</a>)
@@ -30,71 +32,103 @@ changequote(<{!,!}>)dnl
 </section>
 
 <section>
-<h2>What is a sheaf?</h2>
-<p>Canonical example:
-If <code>X</code> is a topological space,
-then continuous functions
+<center class="huge">
 <code class="highlight">
 	<span class="n">X</span>
 	<span class="bp">→</span>
 	<span class="n">ℝ</span>
 </code>
-form a sheaf.
-
-<p>Crucial property: functions glue uniquely
+</center>
 </section>
 
 <section>
-<h2>A first definition</h2>
-<p>Let
-<code>X</code>
-be a topological space.
+<center>
+	functions glue uniquely
+</center>
+</section>
 
+<section>
+<div class="vcenter">
 <p>A <em>presheaf</em> <code>F</code>
 is a rule that assigns
 <ul>
-<li>to every open <code>U ⊆ X</code> a set <code class="highlight"><span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span></code></li>
+<li>to every open <code>U ⊆ X</code><br/>
+a set
+<code class="highlight"><span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span></code>
+<code class="tiny marginal highlight"><span class="c">-- functions</span></code>
+</li>
 <li>to every inclusion of opens <code>U ⊆ V</code><br/>
-	a map
-	<code class="highlight">
-		<span class="n">r_UV</span> <span class="o">:</span> <span class="n">F</span><span class="o">(</span><span class="n">V</span><span class="o">)</span> <span class="bp">→</span> <span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span>
-	</code></li>
+a map
+<code class="highlight">
+<span class="n">r_UV</span> <span class="o">:</span>
+<span class="n">F</span><span class="o">(</span><span class="n">V</span><span class="o">)</span>
+<span class="bp">→</span>
+<span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span>
+</code>
+<code class="tiny marginal highlight"><span class="c">-- restriction</span></code>
+</li>
 </ul>
 <p>such that
 <ul>
-<li>for all <code>U</code>, the map <code>r_UU</code> is <code>id</code> on <code class="highlight"><span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span></code></li>
-<li>if <code>U ⊆ V ⊆ W</code>, then
-<code class="highlight"><span class="n">r_UV</span> <span class="err">∘</span> <span class="n">r_VW</span> <span class="bp">=</span> <span class="n">r_UW</span></code>.</li>
+<li>for every open <code>U ⊆ X</code>,<br/>
+the map <code>r_UU</code> is <code>id</code> on
+<code class="highlight"><span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span></code></li>
+<li>and if <code>U ⊆ V ⊆ W</code>,<br/>
+then
+<code class="highlight"><span class="n">r_UV</span> <span class="err">∘</span> <span class="n">r_VW</span>
+	<span class="bp">=</span> <span class="n">r_UW</span></code>.</li>
 </ul>
+</div>
 </section>
 
 <section>
-<h2>Say again?</h2>
-<p>Note that <code class="highlight"><span class="n">opens</span><span class="o">(</span><span class="n">X</span><span class="o">)</span></code>
-is a lattice,<br/>
-hence a category.
-
-<p>A presheaf on <code>X</code> is exactly a functor
+<div class="vcenter">
 codeblock(psh_as_func)
+</div>
 </section>
 
 <section id="categories">
-		<h2>Categories in Lean</h2>
-		<div class="tiny">
-		codeblock(category)
-		</div>
-		<!-- <div class="anim-attribute slide" data-what=".appear" data-attr="color:#f00"></div> -->
-		<!-- <div class="slide"></div> -->
-		<span class="credit">(by Scott Morrison)</span>
-		</section>
+<h2>Categories in Lean</h2>
+<div class="tiny vcenter">
+codeblock(category)
+</div>
+<footer><span class="credit">(by Scott Morrison)</span></footer>
+</section>
 
-		<!-- <script> -->
-		<!-- 	$('#categories') -->
-		<!-- 	.find('span.n:contains("obviously")') -->
-		<!-- 	.each(function(idx, elem) { -->
-		<!-- 		$(elem).addClass("appear"); -->
-		<!-- 	}); -->
-		<!-- </script> -->
+<section>
+<div class="tiny vcenter">
+codeblock(functor)
+</div>
+<footer><span class="credit">(by Scott Morrison)</span></footer>
+</section>
+
+<section>
+<div class="tiny vcenter">
+codeblock(types_and_yoneda)
+</div>
+<footer><span class="credit">(by Scott Morrison)</span></footer>
+</section>
+
+<section>
+<div class="tiny vcenter">
+codeblock(yoneda_terse)
+</div>
+<footer><span class="credit">(by Scott Morrison)</span></footer>
+</section>
+
+<section>
+<center>
+<div class="mermaid">
+graph LR
+linkStyle default interpolate basis
+FU("F(U)")
+FU -->|r| FUi("F(U_i)")
+FU -->|r| FUj("F(U_j)")
+FUi -->|r| FUij("F(U_ij)")
+FUj -->|r| FUij;
+</div>
+</center>
+</section>
 
 <section>
 <h2>So, what is a sheaf?</h2>
@@ -109,7 +143,8 @@ codeblock(sheaf_condition)
 </code>
 </p>
 <p>A presheaf <code>F</code> is called a <em>sheaf</em>
-	if this canonical map is bijective for every <code>U ⊆ X</code>.
+	if this canonical map is bijective for every <code>U ⊆ X</code>
+	and every cover of <code>U</code>.
 </section>
 
 <section>
@@ -123,6 +158,11 @@ codeblock(sheaf_condition)
 <p>Famous example: &eacute;tale topology</p>
 </section>
 
+
+<script src="js/mermaid.min.js"></script>
+<script>mermaid.initialize({
+	startOnLoad:true
+});</script>
 
 <script src="js/d3.v3.min.js"></script>
 <script src="js/quack.v1.js"></script>

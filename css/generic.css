@@ -8,11 +8,7 @@ body{
 	-o-font-feature-settings:"kern" 1;
 	font-feature-settings:"kern" 1;
 	font-kerning:normal;
-	overflow: hidden;
-}
-section {
-	padding: 0em 1em;
-	background: #fff;
+	/* overflow: hidden; */
 }
 h1,h2,h3,h4,h5,h6 {
 	font-weight: bold;
@@ -114,11 +110,23 @@ footer {
 .warning {
 	color: #c00;
 }
+.tiny {
+	font-size: 60%;
+	line-height: 1.2em;
+}
 .small {
 	font-size: 80%;
 	line-height: 1.2em;
 }
-.tiny {
-	font-size: 60%;
+.big {
+	font-size: 120%;
+	line-height: 1.2em;
+}
+.large {
+	font-size: 140%;
+	line-height: 1.2em;
+}
+.huge {
+	font-size: 200%;
 	line-height: 1.2em;
 }

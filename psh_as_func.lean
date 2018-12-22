@@ -1,1 +1,1 @@
-opens(X)ᵒᵖ ⥤ Set
+def presheaf (X : Top) := opens(X)ᵒᵖ ⥤ Type
