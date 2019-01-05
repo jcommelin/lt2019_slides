@@ -120,29 +120,48 @@ codeblock(yoneda_terse)
 <section>
 <h2>So, what is a sheaf?</h2>
 <p>Let <code>U_i ⊆ X</code> be open sets that cover <code>U ⊆ X</code>.</p>
+<div class="step">
 <p>Consider the following set</p>
 <div class="small">
 codeblock(sheaf_condition)
 </div>
+</div>
+<div class="step">
 <p>There is a canonical map
 <code class="highlight">
 	<span class="n"><span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span> <span class="bp">→</span> <span class="n">F'</span><span class="o">(</span><span class="n">U</span><span class="o">)</span>
 </code>
 </p>
+</div>
+<div class="step">
 <p>A presheaf <code>F</code> is called a <em>sheaf</em>
 	if this canonical map is bijective for every <code>U ⊆ X</code>
 	and every cover of <code>U</code>.
+</div>
 </section>
 
 <section>
-<h2>Remarks</h2>
-<p>Sometimes we want sheaves,<br/>
-	but don't have a good topology.</p>
+<h2>Goals</h2>
+What's on my horizon:
+<ul>
+	<li class="step">Sheaves for schemes and perfectoid spaces</li>
+	<li class="step">Sheaves on a basis</li>
+	<li class="step">&Eacute;tale topology</li>
+	<li class="step">Sites, topoi</li>
+	<li class="step">Preparations for sheaf cohomology</li>
+</ul>
+</section>
 
-<p>Solution:
-	Put topologies on categories.</p>
-
-<p>Famous example: &eacute;tale topology</p>
+<section>
+<h2>Status</h2>
+Where I am right now:
+<ul>
+	<li class="step">Testing limits/colimits in mathlib</li>
+	<li class="step">Writing categorical boilerplate</li>
+	<li class="step">Hesitating about design decisions</li>
+	<li class="step">Sites, pretopologies, coverages, Grothendieck topologies</li>
+	<li class="step">Alas, Lean does not know an example of a sheaf (yet)</li>
+</ul>
 </section>
 
 <!-- <script src="js/mermaid.min.js"></script> -->

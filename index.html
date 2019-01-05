@@ -109,8 +109,8 @@ then
 
 <section>
 <div class="tiny vcenter">
-<div class="highlight"><pre><span></span><span class="kn">structure</span> <span class="n">functor</span> <span class="o">(</span><span class="n">C</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u₁</span><span class="o">)</span> <span class="o">[</span><span class="n">category</span><span class="bp">.</span><span class="o">{</span><span class="n">u₁</span> <span class="n">v₁</span><span class="o">}</span> <span class="n">C</span><span class="o">]</span>
-                  <span class="o">(</span><span class="n">D</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u₂</span><span class="o">)</span> <span class="o">[</span><span class="n">category</span><span class="bp">.</span><span class="o">{</span><span class="n">u₂</span> <span class="n">v₂</span><span class="o">}</span> <span class="n">D</span><span class="o">]</span> <span class="o">:</span>
+<div class="highlight"><pre><span></span><span class="kn">structure</span> <span class="n">functor</span> <span class="o">(</span><span class="n">C</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u₁</span><span class="o">)</span> <span class="o">[</span><span class="n">category</span><span class="bp">.</span><span class="o">{</span><span class="n">v₁</span><span class="o">}</span> <span class="n">C</span><span class="o">]</span>
+                  <span class="o">(</span><span class="n">D</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u₂</span><span class="o">)</span> <span class="o">[</span><span class="n">category</span><span class="bp">.</span><span class="o">{</span><span class="n">v₂</span><span class="o">}</span> <span class="n">D</span><span class="o">]</span> <span class="o">:</span>
   <span class="kt">Type</span> <span class="o">(</span><span class="n">max</span> <span class="n">u₁</span> <span class="n">v₁</span> <span class="n">u₂</span> <span class="n">v₂</span><span class="o">)</span> <span class="o">:=</span>
 <span class="o">(</span><span class="n">obj</span>       <span class="o">:</span> <span class="n">C</span> <span class="bp">→</span> <span class="n">D</span><span class="o">)</span>
 <span class="o">(</span><span class="n">map</span>       <span class="o">:</span> <span class="bp">Π</span> <span class="o">{</span><span class="n">X</span> <span class="n">Y</span> <span class="o">:</span> <span class="n">C</span><span class="o">},</span> <span class="o">(</span><span class="n">X</span> <span class="err">⟶</span> <span class="n">Y</span><span class="o">)</span> <span class="bp">→</span> <span class="o">((</span><span class="n">obj</span> <span class="n">X</span><span class="o">)</span> <span class="err">⟶</span> <span class="o">(</span><span class="n">obj</span> <span class="n">Y</span><span class="o">)))</span>
@@ -131,7 +131,7 @@ then
 
 <span class="c1">---- 8&lt; ---- 8&lt; ---- 8&lt; ----</span>
 
-<span class="kn">variables</span> <span class="o">{</span><span class="n">C</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u₁</span><span class="o">}</span> <span class="o">[</span><span class="err">𝒞</span> <span class="o">:</span> <span class="n">category</span><span class="bp">.</span><span class="o">{</span><span class="n">u₁</span> <span class="n">v₁</span><span class="o">}</span> <span class="n">C</span><span class="o">]</span>
+<span class="kn">variables</span> <span class="o">{</span><span class="n">C</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u₁</span><span class="o">}</span> <span class="o">[</span><span class="err">𝒞</span> <span class="o">:</span> <span class="n">category</span><span class="bp">.</span><span class="o">{</span><span class="n">v₁</span><span class="o">}</span> <span class="n">C</span><span class="o">]</span>
 <span class="n">include</span> <span class="err">𝒞</span>
 
 <span class="n">def</span> <span class="n">yoneda</span> <span class="o">:</span> <span class="n">C</span> <span class="err">⥤</span> <span class="o">((</span><span class="n">C</span><span class="err">ᵒᵖ</span><span class="o">)</span> <span class="err">⥤</span> <span class="o">(</span><span class="kt">Type</span> <span class="n">v₁</span><span class="o">))</span> <span class="o">:=</span> 
@@ -175,30 +175,49 @@ then
 <section>
 <h2>So, what is a sheaf?</h2>
 <p>Let <code>U_i ⊆ X</code> be open sets that cover <code>U ⊆ X</code>.</p>
+<div class="step">
 <p>Consider the following set</p>
 <div class="small">
 <div class="highlight"><pre><span></span><span class="n">F&#39;</span><span class="o">(</span><span class="n">U</span><span class="o">)</span> <span class="bp">=</span> <span class="o">{</span> <span class="n">s</span> <span class="err">∈</span> <span class="bp">Π_</span><span class="n">i</span> <span class="n">F</span><span class="o">(</span><span class="n">U_i</span><span class="o">)</span> <span class="bp">|</span> <span class="n">r</span><span class="o">(</span><span class="n">s_i</span><span class="o">)</span> <span class="bp">=</span> <span class="n">r</span><span class="o">(</span><span class="n">s_j</span><span class="o">),</span> <span class="bp">∀</span> <span class="n">i</span><span class="o">,</span><span class="n">j</span> <span class="o">}</span>
 </pre></div>
 </div>
+</div>
+<div class="step">
 <p>There is a canonical map
 <code class="highlight">
 	<span class="n"><span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span> <span class="bp">→</span> <span class="n">F'</span><span class="o">(</span><span class="n">U</span><span class="o">)</span>
 </code>
 </p>
+</div>
+<div class="step">
 <p>A presheaf <code>F</code> is called a <em>sheaf</em>
 	if this canonical map is bijective for every <code>U ⊆ X</code>
 	and every cover of <code>U</code>.
+</div>
 </section>
 
 <section>
-<h2>Remarks</h2>
-<p>Sometimes we want sheaves,<br/>
-	but don't have a good topology.</p>
+<h2>Goals</h2>
+What's on my horizon:
+<ul>
+	<li class="step">Sheaves for schemes and perfectoid spaces</li>
+	<li class="step">Sheaves on a basis</li>
+	<li class="step">&Eacute;tale topology</li>
+	<li class="step">Sites, topoi</li>
+	<li class="step">Preparations for sheaf cohomology</li>
+</ul>
+</section>
 
-<p>Solution:
-	Put topologies on categories.</p>
-
-<p>Famous example: &eacute;tale topology</p>
+<section>
+<h2>Status</h2>
+Where I am right now:
+<ul>
+	<li class="step">Testing limits/colimits in mathlib</li>
+	<li class="step">Writing categorical boilerplate</li>
+	<li class="step">Hesitating about design decisions</li>
+	<li class="step">Sites, pretopologies, coverages, Grothendieck topologies</li>
+	<li class="step">Alas, Lean does not know an example of a sheaf (yet)</li>
+</ul>
 </section>
 
 <!-- <script src="js/mermaid.min.js"></script> -->

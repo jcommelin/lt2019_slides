@@ -1,5 +1,5 @@
-structure functor (C : Type u₁) [category.{u₁ v₁} C]
-                  (D : Type u₂) [category.{u₂ v₂} D] :
+structure functor (C : Type u₁) [category.{v₁} C]
+                  (D : Type u₂) [category.{v₂} D] :
   Type (max u₁ v₁ u₂ v₂) :=
 (obj       : C → D)
 (map       : Π {X Y : C}, (X ⟶ Y) → ((obj X) ⟶ (obj Y)))

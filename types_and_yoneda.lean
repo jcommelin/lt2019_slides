@@ -5,7 +5,7 @@ instance types : large_category (Type u) :=
 
 ---- 8< ---- 8< ---- 8< ----
 
-variables {C : Type u₁} [𝒞 : category.{u₁ v₁} C]
+variables {C : Type u₁} [𝒞 : category.{v₁} C]
 include 𝒞
 
 def yoneda : C ⥤ ((Cᵒᵖ) ⥤ (Type v₁)) := 
