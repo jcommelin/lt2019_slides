@@ -1,9 +1,15 @@
+html {
+  height: 768px;
+  /* padding: 160px 80px; */
+  width: 1024px;
+}
+
 body {
   margin: auto;
 }
 
 .stack {
-  background: #222 url(cartographer.png);
+  /* background: #222 url(cartographer.png); */
   color: #fff;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -12,9 +18,9 @@ body {
   -o-box-sizing: border-box;
   display: none;
   font-size: 48px;
-  height: 800px;
-  padding: 160px 80px;
-  width: 1280px;
+  height: 768px;
+  /* padding: 160px 80px; */
+  width: 1024px;
   -webkit-transform: translate3d(0,0,0);
 }
 

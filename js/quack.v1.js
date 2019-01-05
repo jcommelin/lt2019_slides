@@ -125,7 +125,7 @@ function quack() {
   function resizeNoTouchy() {
     if (sectionHeight) var y0 = y;
 
-    sectionHeight = size[1] / size[0] * innerWidth;
+    sectionHeight = 768; // size[1] / size[0] * innerWidth;
     windowHeight = innerHeight;
 
     sectionAndBackground
@@ -137,7 +137,7 @@ function quack() {
         .style("height", windowHeight * scrollRatio + "px");
 
     body
-        .style("font-size", innerWidth / size[0] * fontSize + "px")
+        .style("font-size", fontSize + "px")
         .style("height", windowHeight * n + "px");
 
     // Preserve the current scroll position on resize.
