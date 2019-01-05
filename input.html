@@ -52,12 +52,12 @@ changequote(<{!,!}>)dnl
 <p>A <em>presheaf</em> <code>F</code>
 is a rule that assigns
 <ul>
-<li>to every open <code>U ⊆ X</code><br/>
+<li class="step">to every open <code>U ⊆ X</code><br/>
 a set
 <code class="highlight"><span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span></code>
 <code class="tiny marginal highlight"><span class="c">-- functions</span></code>
 </li>
-<li>to every inclusion of opens <code>U ⊆ V</code><br/>
+<li class="step">to every inclusion of opens <code>U ⊆ V</code><br/>
 a map
 <code class="highlight">
 <span class="n">r_UV</span> <span class="o">:</span>
@@ -70,10 +70,10 @@ a map
 </ul>
 <p>such that
 <ul>
-<li>for every open <code>U ⊆ X</code>,<br/>
+<li class="step">for every open <code>U ⊆ X</code>,<br/>
 the map <code>r_UU</code> is <code>id</code> on
 <code class="highlight"><span class="n">F</span><span class="o">(</span><span class="n">U</span><span class="o">)</span></code></li>
-<li>and if <code>U ⊆ V ⊆ W</code>,<br/>
+<li class="step">and if <code>U ⊆ V ⊆ W</code>,<br/>
 then
 <code class="highlight"><span class="n">r_UV</span> <span class="err">∘</span> <span class="n">r_VW</span>
 	<span class="bp">=</span> <span class="n">r_UW</span></code>.</li>
@@ -93,6 +93,7 @@ codeblock(psh_as_func)
 codeblock(category)
 </div>
 <footer><span class="credit">(by Scott Morrison)</span></footer>
+
 </section>
 
 <section>
@@ -114,20 +115,6 @@ codeblock(types_and_yoneda)
 codeblock(yoneda_terse)
 </div>
 <footer><span class="credit">(by Scott Morrison)</span></footer>
-</section>
-
-<section>
-<center>
-<div class="mermaid">
-graph LR
-linkStyle default interpolate basis
-FU("F(U)")
-FU -->|r| FUi("F(U_i)")
-FU -->|r| FUj("F(U_j)")
-FUi -->|r| FUij("F(U_ij)")
-FUj -->|r| FUij;
-</div>
-</center>
 </section>
 
 <section>
@@ -158,13 +145,72 @@ codeblock(sheaf_condition)
 <p>Famous example: &eacute;tale topology</p>
 </section>
 
-
-<script src="js/mermaid.min.js"></script>
-<script>mermaid.initialize({
-	startOnLoad:true
-});</script>
+<!-- <script src="js/mermaid.min.js"></script> -->
+<!-- <script>mermaid.initialize({ -->
+<!-- 	startOnLoad:true -->
+<!-- });</script> -->
 
 <script src="js/d3.v3.min.js"></script>
 <script src="js/quack.v1.js"></script>
 
-<script> var myquack = quack(); </script>
+<script>
+var myquack = quack()
+.on("activate", activate)
+.on("deactivate", deactivate);
+
+var section = d3.selectAll("section");
+section.selectAll(".step").style("visibility", "hidden");
+
+myquack.index = 0;
+var stepctr = {};
+myquack.cur = section[0][0];
+
+function inc_step() {
+	var steps = myquack.cur.selectAll(".step")
+	if (myquack.index in stepctr) {
+		stepctr[myquack.index] += 1;
+	} else {
+		stepctr[myquack.index] = 0;
+	}
+	if (stepctr[myquack.index] >= steps[0].length) {
+		stepctr[myquack.index] = steps[0].length - 1;
+	}
+	steps.filter(
+		function (d, idx) { return idx === stepctr[myquack.index]; }
+	).style("visibility", "visible");
+}
+function dec_step() {
+	var steps = myquack.cur.selectAll(".step")
+	if (myquack.index in stepctr) {
+		stepctr[myquack.index] -= 1;
+	} else {
+		stepctr[myquack.index] = steps[0].length - 1;
+	}
+	if (stepctr[myquack.index] < -1) {
+		stepctr[myquack.index] = -1;
+	}
+	myquack.cur.selectAll(".step").filter(
+		function (d, idx) { return idx === stepctr[myquack.index] + 1; }
+	).style("visibility", "hidden");
+}
+
+d3.select(window).on("keydown", function () {
+	if (d3.event.keyCode === 74) {
+		inc_step();
+	}
+	if (d3.event.keyCode === 75) {
+		dec_step();
+	}
+} );
+
+function activate(d, i) {
+	myquack.index = i;
+	myquack.cur = section.filter(
+		function (d, idx) { return idx === myquack.index; }
+	);
+	console.log(myquack.cur.selectAll(".step"));
+}
+
+function deactivate(d, i) {
+}
+</script>
