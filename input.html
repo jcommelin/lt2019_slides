@@ -15,7 +15,7 @@ changequote(<{!,!}>)dnl
 <link rel="stylesheet" media="screen" href="css/stack.v0.css">
 
 <section id="titleslide">
-	<h1>Sheaves in Lean</h1>
+	<h1><span class="large">Sheaves in Lean</span></h1>
 <footer><span id="wip">[work in progress]</span>
 	<span id="author"><em>by</em> &emsp; Johan Commelin</span></footer>
 </section>
@@ -88,8 +88,8 @@ codeblock(psh_as_func)
 </section>
 
 <section id="categories">
-<h2>Categories in Lean</h2>
-<div class="tiny vcenter">
+	<!-- <h2>Categories in Lean</h2> -->
+<div class="vcenter">
 codeblock(category)
 </div>
 <footer><span class="credit">(by Scott Morrison)</span></footer>
@@ -97,22 +97,36 @@ codeblock(category)
 </section>
 
 <section>
-<div class="tiny vcenter">
+<div class="vcenter">
 codeblock(functor)
 </div>
 <footer><span class="credit">(by Scott Morrison)</span></footer>
 </section>
 
 <section>
-<div class="tiny vcenter">
-codeblock(types_and_yoneda)
+<div class="vcenter">
+codeblock(types)
 </div>
 <footer><span class="credit">(by Scott Morrison)</span></footer>
 </section>
 
 <section>
-<div class="tiny vcenter">
-codeblock(yoneda_terse)
+<div class="vcenter">
+codeblock(yoneda)
+</div>
+<footer><span class="credit">(by Scott Morrison)</span></footer>
+</section>
+
+<section>
+<div class="vcenter">
+codeblock(yoneda2)
+</div>
+<footer><span class="credit">(by Scott Morrison)</span></footer>
+</section>
+
+<section>
+<div class="vcenter">
+codeblock(yoneda3)
 </div>
 <footer><span class="credit">(by Scott Morrison)</span></footer>
 </section>
@@ -141,9 +155,23 @@ codeblock(sheaf_condition)
 </section>
 
 <section>
+<center>
+	sheaves of (commutative) groups/rings
+</center>
+</section>
+
+<section>
+<center>
+	topologies on categories
+</center>
+</section>
+
+<!--
+<section>
 <h2>Goals</h2>
 What's on my horizon:
 <ul>
+	<li class="step">Sheaves of (commutative) groups/rings</li>
 	<li class="step">Sheaves for schemes and perfectoid spaces</li>
 	<li class="step">Sheaves on a basis</li>
 	<li class="step">&Eacute;tale topology</li>
@@ -162,6 +190,13 @@ Where I am right now:
 	<li class="step">Sites, pretopologies, coverages, Grothendieck topologies</li>
 	<li class="step">Alas, Lean does not know an example of a sheaf (yet)</li>
 </ul>
+</section>
+-->
+
+<section>
+<center class="small">
+	<a href="https://github.com/leanprover-community/mathlib/tree/sheaf-2">https://github.com/leanprover-community/mathlib/tree/sheaf-2</a>
+</center>
 </section>
 
 <!-- <script src="js/mermaid.min.js"></script> -->

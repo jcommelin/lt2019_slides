@@ -3,7 +3,7 @@
 function quack() {
   var quack = {},
       size = [1024, 768],
-      fontSize = 32,
+      fontSize = 24,
       sectionHeight,
       windowHeight,
       dispatch = d3.dispatch("scroll", "activate", "deactivate"),

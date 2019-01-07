@@ -14,7 +14,7 @@
 <link rel="stylesheet" media="screen" href="css/stack.v0.css">
 
 <section id="titleslide">
-	<h1>Sheaves in Lean</h1>
+	<h1><span class="large">Sheaves in Lean</span></h1>
 <footer><span id="wip">[work in progress]</span>
 	<span id="author"><em>by</em> &emsp; Johan Commelin</span></footer>
 </section>
@@ -88,27 +88,27 @@ then
 </section>
 
 <section id="categories">
-<h2>Categories in Lean</h2>
-<div class="tiny vcenter">
+	<!-- <h2>Categories in Lean</h2> -->
+<div class="vcenter">
 <div class="highlight"><pre><span></span><span class="n">class</span> <span class="n">category</span> <span class="o">(</span><span class="n">obj</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u</span><span class="o">)</span> <span class="o">:</span> <span class="kt">Type</span> <span class="o">(</span><span class="n">max</span> <span class="n">u</span> <span class="o">(</span><span class="n">v</span><span class="bp">+</span><span class="mi">1</span><span class="o">))</span> <span class="o">:=</span>
-<span class="o">(</span><span class="n">hom</span>      <span class="o">:</span> <span class="n">obj</span> <span class="bp">→</span> <span class="n">obj</span> <span class="bp">→</span> <span class="kt">Type</span> <span class="n">v</span><span class="o">)</span>
-<span class="o">(</span><span class="kn">infixr</span> <span class="bp">`</span> <span class="err">⟶</span> <span class="bp">`</span><span class="o">:</span><span class="mi">10</span> <span class="o">:=</span> <span class="n">hom</span><span class="o">)</span>
-<span class="o">(</span><span class="n">id</span>       <span class="o">:</span> <span class="bp">Π</span> <span class="n">X</span> <span class="o">:</span> <span class="n">obj</span><span class="o">,</span> <span class="n">X</span> <span class="err">⟶</span> <span class="n">X</span><span class="o">)</span>
-<span class="o">(</span><span class="kn">notation</span> <span class="bp">`</span><span class="mi">𝟙</span><span class="bp">`</span> <span class="o">:=</span> <span class="n">id</span><span class="o">)</span>
-<span class="o">(</span><span class="n">comp</span>     <span class="o">:</span> <span class="bp">Π</span> <span class="o">{</span><span class="n">X</span> <span class="n">Y</span> <span class="n">Z</span> <span class="o">:</span> <span class="n">obj</span><span class="o">},</span> <span class="o">(</span><span class="n">X</span> <span class="err">⟶</span> <span class="n">Y</span><span class="o">)</span> <span class="bp">→</span> <span class="o">(</span><span class="n">Y</span> <span class="err">⟶</span> <span class="n">Z</span><span class="o">)</span> <span class="bp">→</span> <span class="o">(</span><span class="n">X</span> <span class="err">⟶</span> <span class="n">Z</span><span class="o">))</span>
-<span class="o">(</span><span class="kn">infixr</span> <span class="bp">`</span> <span class="err">≫</span> <span class="bp">`</span><span class="o">:</span><span class="mi">80</span> <span class="o">:=</span> <span class="n">comp</span><span class="o">)</span>
-<span class="o">(</span><span class="n">id_comp&#39;</span> <span class="o">:</span> <span class="bp">∀</span> <span class="o">{</span><span class="n">X</span> <span class="n">Y</span> <span class="o">:</span> <span class="n">obj</span><span class="o">}</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">X</span> <span class="err">⟶</span> <span class="n">Y</span><span class="o">),</span> <span class="mi">𝟙</span> <span class="n">X</span> <span class="err">≫</span> <span class="n">f</span> <span class="bp">=</span> <span class="n">f</span> <span class="bp">.</span> <span class="n">obviously</span><span class="o">)</span>
-<span class="o">(</span><span class="n">comp_id&#39;</span> <span class="o">:</span> <span class="bp">∀</span> <span class="o">{</span><span class="n">X</span> <span class="n">Y</span> <span class="o">:</span> <span class="n">obj</span><span class="o">}</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">X</span> <span class="err">⟶</span> <span class="n">Y</span><span class="o">),</span> <span class="n">f</span> <span class="err">≫</span> <span class="mi">𝟙</span> <span class="n">Y</span> <span class="bp">=</span> <span class="n">f</span> <span class="bp">.</span> <span class="n">obviously</span><span class="o">)</span>
-<span class="o">(</span><span class="n">assoc&#39;</span>   <span class="o">:</span> <span class="bp">∀</span> <span class="o">{</span><span class="n">W</span> <span class="n">X</span> <span class="n">Y</span> <span class="n">Z</span> <span class="o">:</span> <span class="n">obj</span><span class="o">}</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">W</span> <span class="err">⟶</span> <span class="n">X</span><span class="o">)</span> <span class="o">(</span><span class="n">g</span> <span class="o">:</span> <span class="n">X</span> <span class="err">⟶</span> <span class="n">Y</span><span class="o">)</span> <span class="o">(</span><span class="n">h</span> <span class="o">:</span> <span class="n">Y</span> <span class="err">⟶</span> <span class="n">Z</span><span class="o">),</span>
-  <span class="o">(</span><span class="n">f</span> <span class="err">≫</span> <span class="n">g</span><span class="o">)</span> <span class="err">≫</span> <span class="n">h</span> <span class="bp">=</span> <span class="n">f</span> <span class="err">≫</span> <span class="o">(</span><span class="n">g</span> <span class="err">≫</span> <span class="n">h</span><span class="o">)</span> <span class="bp">.</span> <span class="n">obviously</span><span class="o">)</span>
-</pre></div>
+<div class="step"><span class="o">(</span><span class="n">hom</span>      <span class="o">:</span> <span class="n">obj</span> <span class="bp">→</span> <span class="n">obj</span> <span class="bp">→</span> <span class="kt">Type</span> <span class="n">v</span><span class="o">)</span>
+<span class="o">(</span><span class="kn">infixr</span> <span class="bp">`</span> <span class="err">⟶</span> <span class="bp">`</span><span class="o">:</span><span class="mi">10</span> <span class="o">:=</span> <span class="n">hom</span><span class="o">)</span></div><div class="step"><span class="o">(</span><span class="n">id</span>       <span class="o">:</span> <span class="bp">Π</span> <span class="n">X</span> <span class="o">:</span> <span class="n">obj</span><span class="o">,</span> <span class="n">X</span> <span class="err">⟶</span> <span class="n">X</span><span class="o">)</span>
+<span class="o">(</span><span class="kn">notation</span> <span class="bp">`</span><span class="mi">𝟙</span><span class="bp">`</span> <span class="o">:=</span> <span class="n">id</span><span class="o">)</span></div><div class="step"><span class="o">(</span><span class="n">comp</span>     <span class="o">:</span> <span class="bp">Π</span> <span class="o">{</span><span class="n">X</span> <span class="n">Y</span> <span class="n">Z</span> <span class="o">:</span> <span class="n">obj</span><span class="o">},</span> <span class="o">(</span><span class="n">X</span> <span class="err">⟶</span> <span class="n">Y</span><span class="o">)</span> <span class="bp">→</span> <span class="o">(</span><span class="n">Y</span> <span class="err">⟶</span> <span class="n">Z</span><span class="o">)</span> <span class="bp">→</span> <span class="o">(</span><span class="n">X</span> <span class="err">⟶</span> <span class="n">Z</span><span class="o">))</span>
+<span class="o">(</span><span class="kn">infixr</span> <span class="bp">`</span> <span class="err">≫</span> <span class="bp">`</span><span class="o">:</span><span class="mi">80</span> <span class="o">:=</span> <span class="n">comp</span><span class="o">)</span></div><div class="step"><span class="o">(</span><span class="n">id_comp&#39;</span> <span class="o">:</span> <span class="bp">∀</span> <span class="o">{</span><span class="n">X</span> <span class="n">Y</span> <span class="o">:</span> <span class="n">obj</span><span class="o">}</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">X</span> <span class="err">⟶</span> <span class="n">Y</span><span class="o">),</span> <span class="mi">𝟙</span> <span class="n">X</span> <span class="err">≫</span> <span class="n">f</span> <span class="bp">=</span> <span class="n">f</span>
+            <span class="bp">.</span> <span class="n">obviously</span><span class="o">)</span>
+<span class="o">(</span><span class="n">comp_id&#39;</span> <span class="o">:</span> <span class="bp">∀</span> <span class="o">{</span><span class="n">X</span> <span class="n">Y</span> <span class="o">:</span> <span class="n">obj</span><span class="o">}</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">X</span> <span class="err">⟶</span> <span class="n">Y</span><span class="o">),</span> <span class="n">f</span> <span class="err">≫</span> <span class="mi">𝟙</span> <span class="n">Y</span> <span class="bp">=</span> <span class="n">f</span>
+            <span class="bp">.</span> <span class="n">obviously</span><span class="o">)</span>
+<span class="o">(</span><span class="n">assoc&#39;</span>   <span class="o">:</span> <span class="bp">∀</span> <span class="o">{</span><span class="n">W</span> <span class="n">X</span> <span class="n">Y</span> <span class="n">Z</span> <span class="o">:</span> <span class="n">obj</span><span class="o">}</span>
+            <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">W</span> <span class="err">⟶</span> <span class="n">X</span><span class="o">)</span> <span class="o">(</span><span class="n">g</span> <span class="o">:</span> <span class="n">X</span> <span class="err">⟶</span> <span class="n">Y</span><span class="o">)</span> <span class="o">(</span><span class="n">h</span> <span class="o">:</span> <span class="n">Y</span> <span class="err">⟶</span> <span class="n">Z</span><span class="o">),</span>
+            <span class="o">(</span><span class="n">f</span> <span class="err">≫</span> <span class="n">g</span><span class="o">)</span> <span class="err">≫</span> <span class="n">h</span> <span class="bp">=</span> <span class="n">f</span> <span class="err">≫</span> <span class="o">(</span><span class="n">g</span> <span class="err">≫</span> <span class="n">h</span><span class="o">)</span>
+            <span class="bp">.</span> <span class="n">obviously</span><span class="o">)</span></div></pre></div>
 </div>
 <footer><span class="credit">(by Scott Morrison)</span></footer>
 
 </section>
 
 <section>
-<div class="tiny vcenter">
+<div class="vcenter">
 <div class="highlight"><pre><span></span><span class="kn">structure</span> <span class="n">functor</span> <span class="o">(</span><span class="n">C</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u₁</span><span class="o">)</span> <span class="o">[</span><span class="n">category</span><span class="bp">.</span><span class="o">{</span><span class="n">v₁</span><span class="o">}</span> <span class="n">C</span><span class="o">]</span>
                   <span class="o">(</span><span class="n">D</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u₂</span><span class="o">)</span> <span class="o">[</span><span class="n">category</span><span class="bp">.</span><span class="o">{</span><span class="n">v₂</span><span class="o">}</span> <span class="n">D</span><span class="o">]</span> <span class="o">:</span>
   <span class="kt">Type</span> <span class="o">(</span><span class="n">max</span> <span class="n">u₁</span> <span class="n">v₁</span> <span class="n">u₂</span> <span class="n">v₂</span><span class="o">)</span> <span class="o">:=</span>
@@ -123,7 +123,18 @@ then
 </section>
 
 <section>
-<div class="tiny vcenter">
+<div class="vcenter">
+<div class="highlight"><pre><span></span><span class="kn">instance</span> <span class="n">types</span> <span class="o">:</span> <span class="n">large_category</span> <span class="o">(</span><span class="kt">Type</span> <span class="n">u</span><span class="o">)</span> <span class="o">:=</span>
+<span class="o">{</span> <span class="n">hom</span>     <span class="o">:=</span> <span class="bp">λ</span> <span class="n">a</span> <span class="n">b</span><span class="o">,</span> <span class="o">(</span><span class="n">a</span> <span class="bp">→</span> <span class="n">b</span><span class="o">),</span>
+  <span class="n">id</span>      <span class="o">:=</span> <span class="bp">λ</span> <span class="n">a</span><span class="o">,</span> <span class="n">id</span><span class="o">,</span>
+  <span class="n">comp</span>    <span class="o">:=</span> <span class="bp">λ</span> <span class="bp">_</span> <span class="bp">_</span> <span class="bp">_</span> <span class="n">f</span> <span class="n">g</span><span class="o">,</span> <span class="n">g</span> <span class="err">∘</span> <span class="n">f</span> <span class="o">}</span>
+</pre></div>
+</div>
+<footer><span class="credit">(by Scott Morrison)</span></footer>
+</section>
+
+<section>
+<div class="vcenter">
 <div class="highlight"><pre><span></span><span class="kn">instance</span> <span class="n">types</span> <span class="o">:</span> <span class="n">large_category</span> <span class="o">(</span><span class="kt">Type</span> <span class="n">u</span><span class="o">)</span> <span class="o">:=</span>
 <span class="o">{</span> <span class="n">hom</span>     <span class="o">:=</span> <span class="bp">λ</span> <span class="n">a</span> <span class="n">b</span><span class="o">,</span> <span class="o">(</span><span class="n">a</span> <span class="bp">→</span> <span class="n">b</span><span class="o">),</span>
   <span class="n">id</span>      <span class="o">:=</span> <span class="bp">λ</span> <span class="n">a</span><span class="o">,</span> <span class="n">id</span><span class="o">,</span>
@@ -157,16 +168,20 @@ then
 </section>
 
 <section>
-<div class="tiny vcenter">
+<div class="vcenter">
 <div class="highlight"><pre><span></span><span class="n">def</span> <span class="n">yoneda_2</span> <span class="o">:</span> <span class="n">C</span> <span class="err">⥤</span> <span class="o">((</span><span class="n">C</span><span class="err">ᵒᵖ</span><span class="o">)</span> <span class="err">⥤</span> <span class="o">(</span><span class="kt">Type</span> <span class="n">v₁</span><span class="o">))</span> <span class="o">:=</span> 
 <span class="o">{</span> <span class="n">obj</span> <span class="o">:=</span> <span class="bp">λ</span> <span class="n">X</span><span class="o">,</span>
   <span class="o">{</span> <span class="n">obj</span> <span class="o">:=</span> <span class="bp">λ</span> <span class="n">Y</span> <span class="o">:</span> <span class="n">C</span><span class="o">,</span> <span class="n">Y</span> <span class="err">⟶</span> <span class="n">X</span><span class="o">,</span>
     <span class="n">map</span> <span class="o">:=</span> <span class="bp">λ</span> <span class="n">Y</span> <span class="n">Y&#39;</span> <span class="n">f</span> <span class="n">g</span><span class="o">,</span> <span class="n">f</span> <span class="err">≫</span> <span class="n">g</span> <span class="o">},</span>
   <span class="n">map</span> <span class="o">:=</span> <span class="bp">λ</span> <span class="n">X</span> <span class="n">X&#39;</span> <span class="n">f</span><span class="o">,</span> <span class="o">{</span> <span class="n">app</span> <span class="o">:=</span> <span class="bp">λ</span> <span class="n">Y</span> <span class="n">g</span><span class="o">,</span> <span class="n">g</span> <span class="err">≫</span> <span class="n">f</span> <span class="o">}</span> <span class="o">}</span>
+</pre></div>
+</div>
+<footer><span class="credit">(by Scott Morrison)</span></footer>
+</section>
 
-<span class="c1">---- 8&lt; ---- 8&lt; ---- 8&lt; ----</span>
-
-<span class="n">def</span> <span class="n">yoneda_3</span> <span class="o">:</span> <span class="n">C</span> <span class="err">⥤</span> <span class="o">((</span><span class="n">C</span><span class="err">ᵒᵖ</span><span class="o">)</span> <span class="err">⥤</span> <span class="o">(</span><span class="kt">Type</span> <span class="n">v₁</span><span class="o">))</span> <span class="o">:=</span> <span class="err">ƛ</span> <span class="n">X</span><span class="o">,</span> <span class="err">ƛ</span> <span class="n">Y</span> <span class="o">:</span> <span class="n">C</span><span class="o">,</span> <span class="n">Y</span> <span class="err">⟶</span> <span class="n">X</span><span class="bp">.</span>
+<section>
+<div class="vcenter">
+<div class="highlight"><pre><span></span><span class="n">def</span> <span class="n">yoneda_3</span> <span class="o">:</span> <span class="n">C</span> <span class="err">⥤</span> <span class="o">((</span><span class="n">C</span><span class="err">ᵒᵖ</span><span class="o">)</span> <span class="err">⥤</span> <span class="o">(</span><span class="kt">Type</span> <span class="n">v₁</span><span class="o">))</span> <span class="o">:=</span> <span class="err">ƛ</span> <span class="n">X</span><span class="o">,</span> <span class="err">ƛ</span> <span class="n">Y</span> <span class="o">:</span> <span class="n">C</span><span class="o">,</span> <span class="n">Y</span> <span class="err">⟶</span> <span class="n">X</span><span class="bp">.</span>
 </pre></div>
 </div>
 <footer><span class="credit">(by Scott Morrison)</span></footer>
@@ -197,9 +212,23 @@ then
 </section>
 
 <section>
+<center>
+	sheaves of (commutative) groups/rings
+</center>
+</section>
+
+<section>
+<center>
+	topologies on categories
+</center>
+</section>
+
+<!--
+<section>
 <h2>Goals</h2>
 What's on my horizon:
 <ul>
+	<li class="step">Sheaves of (commutative) groups/rings</li>
 	<li class="step">Sheaves for schemes and perfectoid spaces</li>
 	<li class="step">Sheaves on a basis</li>
 	<li class="step">&Eacute;tale topology</li>
@@ -218,6 +247,13 @@ Where I am right now:
 	<li class="step">Sites, pretopologies, coverages, Grothendieck topologies</li>
 	<li class="step">Alas, Lean does not know an example of a sheaf (yet)</li>
 </ul>
+</section>
+-->
+
+<section>
+<center class="small">
+	<a href="https://github.com/leanprover-community/mathlib/tree/sheaf-2">https://github.com/leanprover-community/mathlib/tree/sheaf-2</a>
+</center>
 </section>
 
 <!-- <script src="js/mermaid.min.js"></script> -->
