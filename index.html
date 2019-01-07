@@ -216,32 +216,32 @@ then
 </center>
 </section>
 
-<!--
 <section>
-<h2>Goals</h2>
-What's on my horizon:
-<ul>
-	<li class="step">Sheaves of (commutative) groups/rings</li>
-	<li class="step">Sheaves for schemes and perfectoid spaces</li>
-	<li class="step">Sheaves on a basis</li>
-	<li class="step">&Eacute;tale topology</li>
-	<li class="step">Sites, topoi</li>
-	<li class="step">Preparations for sheaf cohomology</li>
-</ul>
+<div class="vcenter">
+<div class="highlight"><pre><span></span><span class="n">def</span> <span class="n">covering_family</span> <span class="o">(</span><span class="n">U</span> <span class="o">:</span> <span class="n">X</span><span class="o">)</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u</span> <span class="o">:=</span> <span class="n">set</span> <span class="o">(</span><span class="n">over</span><span class="bp">.</span><span class="o">{</span><span class="n">u</span><span class="o">}</span> <span class="n">U</span><span class="o">)</span>
+</pre></div>
+</div>
 </section>
 
 <section>
-<h2>Status</h2>
-Where I am right now:
-<ul>
-	<li class="step">Testing limits/colimits in mathlib</li>
-	<li class="step">Writing categorical boilerplate</li>
-	<li class="step">Hesitating about design decisions</li>
-	<li class="step">Sites, pretopologies, coverages, Grothendieck topologies</li>
-	<li class="step">Alas, Lean does not know an example of a sheaf (yet)</li>
-</ul>
+<div class="vcenter">
+<div class="highlight"><pre><span></span><span class="kn">structure</span> <span class="n">coverage</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">covers</span>   <span class="o">:</span> <span class="bp">Π</span> <span class="o">(</span><span class="n">U</span> <span class="o">:</span> <span class="n">X</span><span class="o">),</span> <span class="n">set</span> <span class="o">(</span><span class="n">covering_family</span> <span class="n">U</span><span class="o">))</span>
+<span class="o">(</span><span class="n">property</span> <span class="o">:</span> <span class="bp">∀</span> <span class="o">{</span><span class="n">U</span> <span class="n">V</span> <span class="o">:</span> <span class="n">X</span><span class="o">}</span> <span class="o">(</span><span class="n">g</span> <span class="o">:</span> <span class="n">V</span> <span class="err">⟶</span> <span class="n">U</span><span class="o">),</span>
+            <span class="bp">∀</span> <span class="n">f</span> <span class="err">∈</span> <span class="n">covers</span> <span class="n">U</span><span class="o">,</span> <span class="bp">∃</span> <span class="n">h</span> <span class="err">∈</span> <span class="n">covers</span> <span class="n">V</span><span class="o">,</span>
+            <span class="bp">∀</span> <span class="n">Vj</span> <span class="err">∈</span> <span class="o">(</span><span class="n">h</span> <span class="o">:</span> <span class="n">set</span> <span class="bp">_</span><span class="o">),</span> <span class="bp">∃</span> <span class="o">(</span><span class="n">Ui</span> <span class="err">∈</span> <span class="n">f</span><span class="o">),</span>
+            <span class="n">nonempty</span> <span class="err">$</span> <span class="o">((</span><span class="n">over</span><span class="bp">.</span><span class="n">map</span> <span class="n">g</span><span class="o">)</span><span class="bp">.</span><span class="n">obj</span> <span class="n">Vj</span><span class="o">)</span> <span class="err">⟶</span> <span class="n">Ui</span><span class="o">)</span>
+</pre></div>
+</div>
 </section>
--->
+
+<section>
+<div class="vcenter">
+<div class="highlight"><pre><span></span><span class="n">class</span> <span class="n">site</span> <span class="o">(</span><span class="n">X</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u</span><span class="o">)</span> <span class="kn">extends</span> <span class="n">category</span><span class="bp">.</span><span class="o">{</span><span class="n">u</span> <span class="n">u</span><span class="o">}</span> <span class="n">X</span> <span class="o">:=</span>
+<span class="o">(</span><span class="n">coverage</span> <span class="o">:</span> <span class="n">coverage</span> <span class="n">X</span><span class="o">)</span>
+</pre></div>
+</div>
+</section>
 
 <section>
 <center>
