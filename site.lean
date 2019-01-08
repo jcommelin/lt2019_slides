@@ -1,2 +1,2 @@
-class site (X : Type u) extends category.{u u} X :=
+class site (X : Type u) extends category.{u} X :=
 (coverage : coverage X)
