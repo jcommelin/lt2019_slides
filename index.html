@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=1024, height=768, user-scalable=no">
 
-<title>Sheaves in Lean - Lean Together 2019</title>
+<title>Sheaves and Lean - Lean Together 2019</title>
 
 <link rel="stylesheet" media="screen" href="css/reset.css">
 <link rel="stylesheet" media="screen" href="css/fira_code.css">
@@ -14,7 +14,7 @@
 <link rel="stylesheet" media="screen" href="css/stack.v0.css">
 
 <section id="titleslide">
-	<h1><span class="large">Sheaves in Lean</span></h1>
+	<h1><span class="large">Sheaves and Lean</span></h1>
 <footer><span id="wip">[work in progress]</span>
 	<span id="author"><em>by</em> &emsp; Johan Commelin</span></footer>
 </section>
@@ -239,6 +239,14 @@ then
 <div class="vcenter">
 <div class="highlight"><pre><span></span><span class="n">class</span> <span class="n">site</span> <span class="o">(</span><span class="n">X</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u</span><span class="o">)</span> <span class="kn">extends</span> <span class="n">category</span><span class="bp">.</span><span class="o">{</span><span class="n">u</span> <span class="n">u</span><span class="o">}</span> <span class="n">X</span> <span class="o">:=</span>
 <span class="o">(</span><span class="n">coverage</span> <span class="o">:</span> <span class="n">coverage</span> <span class="n">X</span><span class="o">)</span>
+</pre></div>
+</div>
+</section>
+
+<section>
+<div class="vcenter">
+<div class="highlight"><pre><span></span><span class="n">def</span> <span class="n">sheaf</span> <span class="o">(</span><span class="n">X</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">u</span><span class="o">)</span> <span class="o">[</span><span class="err">𝒳</span> <span class="o">:</span> <span class="n">site</span> <span class="n">X</span><span class="o">]</span> <span class="o">:=</span>
+<span class="o">{</span> <span class="n">F</span> <span class="o">:</span> <span class="n">presheaf</span> <span class="n">X</span> <span class="bp">//</span> <span class="n">nonempty</span> <span class="o">(</span><span class="n">site</span><span class="bp">.</span><span class="n">sheaf_condition</span> <span class="n">F</span><span class="o">)</span> <span class="o">}</span>
 </pre></div>
 </div>
 </section>
